@@ -1,0 +1,23 @@
+How to use this in a project:
+
+Add it as a submodule:
+
+    $ git submodule add git://github.com/rubenv/js-validate.git tools/js-validate
+
+
+Add a Makefile such as:
+
+    BASEDIR=./tools/js-validate
+    BACKEND_FILES=app/backend/*.js app/backend/*/*.js
+    CLIENT_FILES=public/js/app.js
+
+    all:
+        $(BASEDIR)/run.js node $(BACKEND_FILES)
+        $(BASEDIR)/run.js browser $(CLIENT_FILES)
+
+The first argument specifies the profile, followed by the files to validate.
+
+Remember, this is a submodule with this setup, so when you clone a repository
+that contains this, be sure to run:
+
+    git submodule update --init
